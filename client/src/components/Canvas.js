@@ -83,8 +83,12 @@ const Canvas = observer(() => {
   };
 
   const connectionHandler = () => {
-    canvasState.setUsername(userRef.current.value);
-    setModal(false);
+    if (userRef.current.value) {
+      canvasState.setUsername(userRef.current.value);
+      setModal(false);
+    } else {
+      alert("Please, enter your name!");
+    }
   };
 
   const drawHandler = (msg) => {
@@ -130,7 +134,7 @@ const Canvas = observer(() => {
       <canvas
         onMouseDown={() => mouseDownHandler()}
         ref={canvasRef}
-        width={650}
+        width={850}
         height={440}
       ></canvas>
     </Wrapper>
@@ -143,9 +147,10 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  background-color: #cdd7e6;
   canvas {
-    border: 1px solid gray;
     background-color: #fff;
+    -webkit-box-shadow: 5px 4px 4px 0px #abb8ca;
+    box-shadow: 5px 4px 4px 0px #abb8ca;
   }
 `;
